@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Table at Little Lemon</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .booking-form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        #confirmationMessage {
+            margin-top: 20px;
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <div class="booking-form">
+        <h1>Book a Table</h1>
+        <form id="bookingForm">
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
+            <label for="time">Time:</label>
+            <input type="time" id="time" name="time" required>
+            <label for="guests">Number of Guests:</label>
+            <input type="number" id="guests" name="guests" min="1" required>
+            <label for="contact">Contact Email:</label>
+            <input type="email" id="contact" name="contact" required>
+            <button type="submit">Book Now</button>
+        </form>
+        <div id="confirmationMessage"></div>
+    </div>
+    <script>
+        document.getElementById('bookingForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+            const guests = document.getElementById('guests').value;
+            const contact = document.getElementById('contact').value;
+
+            // Simple form validation
+            if (!date || !time || !guests || !contact) {
+                alert('Please fill out all fields.');
+                return;
+            }
+
+            // Display confirmation message
+            const confirmationMessage = `
+                Thank you for booking a table on ${date} at ${time} for ${guests} guests.
+                We will contact you at ${contact} to confirm your reservation.
+            `;
+            document.getElementById('confirmationMessage').innerText = confirmationMessage;
+
+            // Here you could also send data to a server
+        });
+    </script>
+</body>
+</html>
